@@ -1,0 +1,38 @@
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    min-width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 6%;
+    padding: 2% 8%;
+}
+.box_up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 6%;
+    padding: 2% 8%;
+}
+
+#pointer {
+    cursor: pointer;
+}
+
+#thumb_up {
+    width: 10%;
+    display: flex;
+}
+
+#if_id {
+    display: none;
+}

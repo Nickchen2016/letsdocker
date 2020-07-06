@@ -1,0 +1,42 @@
+window.onload = ()=>{
+    fetch('/addnum', {
+        moethod: 'GET'
+    })
+    .then(res=>res.json())
+    .then(body=>{
+        console.log("body here-> ",body)
+        if(Object.keys(body).length===0){
+            document.getElementById('numbers').innerHTML = 0
+        }
+        else{
+            document.getElementById('numbers').innerHTML = body[0].num;
+            document.getElementById('if_id').innerHTML = body[0]._id;
+        }
+    })
+}
+
+function addnum(event){
+    let numbers = document.getElementById('numbers');
+    if(numbers.innerHTML==0){
+        fetch('/addnum', {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ num: 1 })
+        })
+        .then(() => window.location.reload());
+    }else{
+        const id = document.getElementById('if_id').innerHTML;
+        fetch(`/addnum/${id}`, {
+            method: 'PATCH',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ num: numbers.innerHTML })
+        })
+        .then(() => window.location.reload());
+    }
+}
