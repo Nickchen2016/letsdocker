@@ -1,10 +1,9 @@
-window.onload = ()=>{
+function reload(){
     fetch('/addnum', {
         moethod: 'GET'
     })
     .then(res=>res.json())
     .then(body=>{
-        console.log("body here-> ",body)
         if(Object.keys(body).length===0){
             document.getElementById('numbers').innerHTML = 0
         }
@@ -14,6 +13,8 @@ window.onload = ()=>{
         }
     })
 }
+
+window.onload = ()=>{reload()}
 
 function addnum(event){
     let numbers = document.getElementById('numbers');
@@ -26,7 +27,7 @@ function addnum(event){
             },
             body: JSON.stringify({ num: 1 })
         })
-        .then(() => window.location.reload());
+        .then(() => reload());
     }else{
         const id = document.getElementById('if_id').innerHTML;
         fetch(`/addnum/${id}`, {
@@ -37,6 +38,6 @@ function addnum(event){
             },
             body: JSON.stringify({ num: numbers.innerHTML })
         })
-        .then(() => window.location.reload());
+        .then(() => reload());
     }
 }
