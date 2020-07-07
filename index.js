@@ -8,7 +8,16 @@ const app = express();
 const PORT = 5000;
 const DB_URI = 'mongodb://mongo:27017/addNum';
 
-mongoose.connect(DB_URI, {
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+const URI = `mongodb+srv://iconic:${process.env.PASS}@data.ohuce.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority
+`
+
+mongoose.connect(
+    // DB_URI, // Use default DB for mongo on docker
+    URI,
+    {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false
