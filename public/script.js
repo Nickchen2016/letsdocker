@@ -1,43 +1,15 @@
-function reload(){
-    fetch('/addnum', {
-        moethod: 'GET'
-    })
-    .then(res=>res.json())
-    .then(body=>{
-        if(Object.keys(body).length===0){
-            document.getElementById('numbers').innerHTML = 0
-        }
-        else{
-            document.getElementById('numbers').innerHTML = body[0].num;
-            document.getElementById('if_id').innerHTML = body[0]._id;
-        }
-    })
-}
+const img = document.getElementById('back-img');
+const img_src = img.src;
 
-window.onload = ()=>{reload()}
+window.onload = () => {
+        console.log('hello', img_src)
 
-function addnum(event){
-    let numbers = document.getElementById('numbers');
-    if(numbers.innerHTML==0){
-        fetch('/addnum', {
-            method: 'POST',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ num: 1 })
-        })
-        .then(() => reload());
-    }else{
-        const id = document.getElementById('if_id').innerHTML;
-        fetch(`/addnum/${id}`, {
-            method: 'PATCH',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ num: numbers.innerHTML })
-        })
-        .then(() => reload());
-    }
+    const canvas = document.createElement('canvas');
+    canvas.width = '200'; canvas.height = '200';
+
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, canvas.width, canvas.height);
+    const imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
+    const data = imageData.data;
+    console.log('_____', data)
 }
