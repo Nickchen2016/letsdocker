@@ -12,6 +12,8 @@ body {
 #back-img {
     position: fixed;
     top: 0;
-    width: 200px;
+    width: 355px;
     height: 200px;
+    /* width: 200px;
+    height: 200px; */
 }
